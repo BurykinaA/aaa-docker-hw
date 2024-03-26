@@ -1,5 +1,5 @@
 # Homework
-Docker lecture repository at [Avito's Analytics Academy](https://avito-analytics-academy.ru/) Data Science course.
+Docker repository at [Avito's Analytics Academy](https://avito-analytics-academy.ru/) Data Science course.
 
 ### Step 1: 
 To understand how the application works, install the dependencies and open these urls (using curl or a browser):
@@ -19,39 +19,7 @@ Make a Dockerfile which uses python version 3.8 or higher as its base image, ins
 ### Step 3.
 Run the following commands:
 ```bash
-# create network
-docker network create --driver bridge webnet
-
-# run server
-docker run \
-    --name=server \
-    -d \
-    --rm \
-    -p 8080:8080 \
-    --network webnet \
-    server:0.0.1
-
-# run prometheus
-docker run \
-    --name=prometheus \
-    -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
-    -d \
-    --rm \
-    --network webnet \
-    prom/prometheus:v2.40.7
-
-# run grafana
-docker run \
-     --name=grafana \
-    -v $(pwd)/grafana/config.ini:/etc/grafana/grafana.ini \
-    -v $(pwd)/grafana/datasource.yml:/etc/grafana/provisioning/datasources/default.yaml \
-    -v $(pwd)/grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/default.yaml \
-    -v $(pwd)/grafana/dashboards:/var/lib/grafana/dashboards \
-    -d \
-    --rm \
-    -p 3000:3000 \
-    --network webnet \
-     grafana/grafana:9.4.2
+docker-compose up -d
 ```
 
 ### Step 4.
